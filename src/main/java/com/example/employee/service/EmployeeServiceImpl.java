@@ -35,4 +35,16 @@ public class EmployeeServiceImpl implements EmployeeService{
         }
         return employee;
     }
+
+    @Override
+    public void deleteEmployeeById(Long id) {
+//        this.employeeRepository.deleteById(id);
+        boolean exists = employeeRepository.existsById(id);
+        if(!exists){
+            throw new IllegalStateException(
+                    "Student with id " + id + " does not exist"
+            );
+        }
+        employeeRepository.deleteById(id);
+    }
 }
